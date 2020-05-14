@@ -1,0 +1,67 @@
+Create 3 users
+>>> User.objects.create(first_name="Mark", last_name="Smith", email_address="ms@abc.com", age="59")
+<User: User object (1)>
+>>> User.object.create(firsr_name="Ron", last_name="Click", email_address="rc@xyz.com", age="57")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: type object 'User' has no attribute 'object'
+>>> Usaer.objects.create(first_name="Ron", last_name="Click", email_address="rc@xyz.com", age="57")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Usaer' is not defined
+>>> User.objects.create(first_name="Ron", last_name="Click", email_address="rc@xyz.com", age="57")
+<User: User object (2)>
+>>> User.objects.create(first_name="Danny", last_name="Hodges", email_address="dh@fake.com", age="60") 
+<User: User object (3)>
+>>> 
+Ha Ha, had a little trouble with my syntax!
+
+Retrieve all users.
+>>> User.objects.all()
+<QuerySet [<User: User object (1)>, <User: User object (2)>, <User: User object (3)>]>
+
+Retrieve the last users
+>>> User.objects.last()
+<User: User object (3)>
+>>> 
+
+Retrieve the first users
+>>> User.objects.first()
+<User: User object (1)>
+>>> 
+
+Change user id=3 last name to Pancakes
+<User: User object (3)>
+>>> c.last_name="Pancakes"
+>>> c.save()
+>>> User.objects.get(id=3).__dict__
+{'_state': <django.db.models.base.ModelState object at 0x109e2e940>, 'id': 3, 'first_name': 'Danny', 'last_name': 'Pancakes', 'email_address': 'dh@fake.com', 'age': 60, 'created_at': datetime.datetime(2020, 5, 5, 21, 19, 47, 465733, tzinfo=<UTC>), 'updated_at': datetime.datetime(2020, 5, 5, 22, 10, 37, 292400, tzinfo=<UTC>)}
+>>> 
+
+Delete user
+>>> User.objects.get(id=4).delete()
+(1, {'users_app.User': 1})
+>>> User.objects.all()
+<QuerySet [<User: User object (1)>, <User: User object (2)>]>
+>>> 
+
+Sort users by first name/last name
+
+>>> User.objects.all()
+<QuerySet [<User: User object (1)>, <User: User object (2)>]>
+>>> User.objects.all().order_by("first_name")
+<QuerySet [<User: User object (1)>, <User: User object (2)>]>
+>>>  User.objects.all().order_by("last_name")
+  File "<console>", line 1
+    User.objects.all().order_by("last_name")
+    ^
+IndentationError: unexpected indent
+>>> User.objects.all().order_by("last_name")
+<QuerySet [<User: User object (2)>, <User: User object (1)>]>
+>>> 
+
+Sort by first name descending order
+
+>>> User.objects.all().order_by("-first_name")
+<QuerySet [<User: User object (2)>, <User: User object (1)>]>
+>>> 

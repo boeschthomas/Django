@@ -1,0 +1,95 @@
+Create 3 Dojos
+>>> Dojos.objects.all()
+<QuerySet [<Dojos: Dojos object (1)>]>
+>>> Dojos.objects.create(name="Yeti", city="Denver", state="CO")
+<Dojos: Dojos object (2)>
+>>> Dojos.objects.create(name="Shark", city="Key West", state="FL")
+<Dojos: Dojos object (3)>
+>>> 
+Delete 3 Dojos
+>>> Dojos.objects.all().delete()
+(3, {'dojo_ninjas_app.Ninjas': 0, 'dojo_ninjas_app.Dojos': 3})
+>>> Dojos.objects.all()
+<QuerySet []>
+>>> 
+Create 3 more Dojos
+>>> Dojos.objects.all()
+<QuerySet []>
+>>> Dojos.objects.create(name="Chill", city="San Diago", state="CA")
+<Dojos: Dojos object (4)>
+>>> Dojos.objects.create(name="Jazz", city="New Orleans", state="LA"
+...  Dojos.objects.create(name="Jazz", city="New Orleans", state="LA")
+  File "<console>", line 2
+    Dojos.objects.create(name="Jazz", city="New Orleans", state="LA")
+        ^
+SyntaxError: invalid syntax
+>>> Dojos.objects.create(name="Jazz", city="New Orleans", state="LA")
+<Dojos: Dojos object (5)>
+>>> Dojos.objects.create(name="World", city="Orlando", state="FL")
+<Dojos: Dojos object (6)>
+>>> 
+Create 3 ninjas in first dojo
+>>> Ninjas.objects.create(first_name="John", last_name="Doe", dojos=Dojos.objects.get(id=4))
+<Ninjas: Ninjas object (1)>
+>>> Ninjas.objects.create(first_name="Dave", last_name="Dillon", dojos=Dojos.objects.get(id=4))
+<Ninjas: Ninjas object (2)>
+>>> Ninjas.objects.create(first_name="Mickey", last_name="Mouse", dojos=Dojos.objects.get(id=4))
+<Ninjas: Ninjas object (3)>
+>>> 
+Create 3 ninjas in second dojo 
+>>> Ninjas.objects.create(first_name="Mark", last_name="Smith", dojos=Dojos.objects.get(id=5))
+<Ninjas: Ninjas object (4)>
+>>> Ninjas.objects.create(first_name="Jackie", last_name="Chan", dojos=Dojos.objects.get(id=5))
+<Ninjas: Ninjas object (5)>
+>>> Ninjas.objects.create(first_name="Donald", last_name="Duck", dojos=Dojos.objects.get(id=5))
+<Ninjas: Ninjas object (6)>
+>>> 
+Create 3 ninjas in third dojo 
+>>> Ninjas.objects.create(first_name="Bill", last_name="Gates", dojos=Dojos.objects.get(id=6))
+<Ninjas: Ninjas object (7)>
+>>> Ninjas.objects.create(first_name="Jaxon", last_name="Jones", dojos=Dojos.objects.get(id=6))
+<Ninjas: Ninjas object (8)>
+>>> Ninjas.objects.create(first_name="Ashlyn", last_name="Jaxon", dojos=Dojos.objects.get(id=6))
+<Ninjas: Ninjas object (9)>
+>>> 
+
+Retrieve all ninjas from first dojo
+>>> Dojos.objects.get(id=4)
+<Dojos: Dojos object (4)>
+>>> one_dojo=Dojos.objects.get(id=4)
+>>> one_dojo.ninjas
+<django.db.models.fields.related_descriptors.create_reverse_many_to_one_manager.<locals>.RelatedManager object at 0x10b55c438>
+>>> one_dojo.ninjas.all
+<bound method BaseManager.all of <django.db.models.fields.related_descriptors.create_reverse_many_to_one_manager.<locals>.RelatedManager object at 0x10b55c390>>
+>>> one_dojo.ninjas.all()
+<QuerySet [<Ninjas: Ninjas object (1)>, <Ninjas: Ninjas object (2)>, <Ninjas: Ninjas object (3)>]>
+>>> 
+
+Retrieve all ninjas from last dojo
+>> two_dojo=Dojos.objects.get(id=6)
+>>> two_dojo.ninjas.all()
+<QuerySet [<Ninjas: Ninjas object (7)>, <Ninjas: Ninjas object (8)>, <Ninjas: Ninjas object (9)>]>
+>>> 
+
+Retrieve last ninjas dojo
+>>> nine_ninja.dojos
+<Dojos: Dojos object (6)>
+>>> 
+
+Add a new textfield desc
+(py3Env) Tom@MacBook-Pro-2 dojo_ninjas_proj % python manage.py makemigrations
+Migrations for 'dojo_ninjas_app':
+  dojo_ninjas_app/migrations/0002_dojos_desc.py
+    - Add field desc to dojos
+(py3Env) Tom@MacBook-Pro-2 dojo_ninjas_proj % python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojo_ninjas_app, sessions
+Running migrations:
+  Applying dojo_ninjas_app.0002_dojos_desc... OK
+(py3Env) Tom@MacBook-Pro-2 dojo_ninjas_proj % 
+
+Created a new Dojo
+>>> from dojo_ninjas_app.models import *
+>>> Dojos.objects.create(name="NuDojo", city="New York", state="NY", desc="New")
+<Dojos: Dojos object (7)>
+>>> 
