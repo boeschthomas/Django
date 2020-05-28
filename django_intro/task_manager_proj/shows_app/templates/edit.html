@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body>
+    <h1>Edit Show</h1>
+    <form action="/update/{{edit_shows.id}}" method=POST>
+        {% csrf_token %}
+    Title: <input type="text" name='shows' value={{edit_shows.shows}}>
+    Release Date: <input type="date" name='release_date' value={{edit_shows.shows}}>
+    Network: <input type="text" name='network' value={{edit_shows.shows}}>
+    Description: <input type="text" name='desc' value={{edit_shows.shows}}>
+    <input type="submit" value="Update">
+    <a href="/go_to_show">Go to Show</a>
+    <a href="/goback">Go Back</a>
+    </form>
+</body>
+</html>

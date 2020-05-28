@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Show</title>
+</head>
+<body>
+    {% for show in viewed_shows %}
+    <h1>{{viewed_shows.shows}}</h1>
+    <h1>{{viewed_shows.network}}</h1>
+    <h1>{{viewed_shows.release_date}}</h1>
+    <h1>{{viewed_shows.desc}}</h1>
+    <h2>{{viewed_shows.updated_at}}</h2>
+    {% endfor %}
+
+</body>
+</html>
