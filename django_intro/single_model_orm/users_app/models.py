@@ -7,6 +7,10 @@ class User(models.Model):
     age = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+@property
+def full_name(self):
+    return f"{self.first_name} {self.last_name}"
     
 
 # Create your models here.

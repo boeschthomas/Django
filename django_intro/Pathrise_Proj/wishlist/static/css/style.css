@@ -1,0 +1,40 @@
+#container{
+    margin: 0px auto;
+    padding: 25px;
+    width: 900px;
+    height: 1200px;
+    background-color: aquamarine;
+  }
+  
+  h1 { 
+    text-align: center;
+  }
+  
+  #job {
+    margin: 0px auto;
+    display: none;
+    width: 150px;
+    height: 100px;
+    padding: 20px;
+    text-align: center;
+    background-color: lightblue;
+    border: 2px solid black;
+    border-radius: 4px;
+  }
+  
+  #job input{
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    border: black solid 2px;
+  }
+
+  .post{
+    width: 200px;
+    height: 150px;
+    padding: 15px;
+    background-color: random_bg_color();
+    border: 2px solid black;
+    border-radius: 4px;
+
+  }

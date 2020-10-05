@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Add a New Show</h1>
-    <form action="/shows/create{{shows.id}}" method=POST>
+    <form action="/shows_create{{shows.id}}" method=POST>
         {% csrf_token %}
     Title: <input type="text" name="shows">
     Release Date: <input type="date" name="release_date">

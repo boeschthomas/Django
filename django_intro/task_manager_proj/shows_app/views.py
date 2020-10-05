@@ -21,9 +21,9 @@ def shows(request):
 
 def create_shows(request):
     if request.method == 'POST':
-        new_shows = Shows.objects.create(shows=request.POST['shows'])
+        new_shows = Shows.objects.create(shows=request.POST['shows'], release_date=request.POST['release_date'], network=request.POST['network'])
         print(new_shows)
-        return redirect('/one_shows')
+        return redirect('one_shows')
     return redirect('/')
 
 def one_shows(request, id):

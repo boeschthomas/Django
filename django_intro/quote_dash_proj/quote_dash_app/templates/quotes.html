@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotes</title>
+</head>
+<body>
+    <h1>Hello {{request.session.name}}! Welcome to the Quotes Page!</h1>
+    <div>
+        <h2>Add a Quote</h2>
+        <form action="/create_quote" method="POST">
+            {% csrf_token %}
+            Author: <input type="text" name='author'>
+            Quote: <input type="text" name='contents'>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+   
+    <h2>Quotes</h2>
+    <div>
+        {% for post in all_posts %}
+            <p>{{post.author}}</p>
+            <p>{{post.contents}}</p>
+            <p>{{new_quote.poster.first_name}} {{post.poster.last_name}}</p>
+            <p>{{new_quote.likes.count}}</p>
+            <p><a href="/likes/{{post.id}}">Like</a></p>
+        {% endfor %}
+    </div>
+    
+
+    <a href='/'>Logout</a>
+    
+</body>
+</html>
